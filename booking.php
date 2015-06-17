@@ -179,11 +179,11 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 				mon = '05';
 				break;
 				
-				case "JUNE":
+				case "JUN":
 				mon = '06';
 				break;
 				
-				case "JULY":
+				case "JUL":
 				mon = '07';
 				break;
 				
@@ -208,7 +208,7 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 				break;
 				}
 				
-				items3 += "'20'"+from[2]+'-'+mon+'-'+from[0]+'\' ,';
+				items3 += "'20"+from[2]+"-"+mon+"-"+from[0]+"' ,";
 				
 				}
 				
@@ -216,54 +216,54 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 		
 	});
 	items3 = items3.slice(0,-2);
-	
+	//alert(items3);
       $('#basic').calendar({
 	  	unavailable: [ '2015-06-12' ,'2015-06-13' ,'2015-06-26' ,'2015-06-27' ,'2015-06-28' ,'2015-06-29' ,'2015-06-30' ],
 		onSelectDate: function(date, month, year){
 		var mon ;
 				
 				switch(month){
-				case "1":
+				case 1:
 				mon = 'JAN';
 				break;
 				
-				case "2":
+				case 2:
 				mon = 'FEB';
 				break;
 				
-				case "3":
+				case 3:
 				mon = 'MAR';
 				break;
 				
-				case "4":
+				case 4:
 				mon = 'APR';
 				break;
 				
-				case "5":
+				case 5:
 				mon = 'MAY';
 				break;
 				
-				case "6":
+				case 6:
 				mon = 'JUNE';
 				break;
 				
-				case "7":
-				mon = 'JULY';
+				case 7:
+				mon = 'JUL';
 				break;
 				
-				case "8":
+				case 8:
 				mon = 'AUG';
 				break;
 				
-				case "9":
+				case 9:
 				mon = 'SEP';
 				break;
 				
-				case "10":
+				case 10:
 				mon = 'OCT';
 				break;
 				
-				case "11":
+				case 11:
 				mon = 'NOV';
 				break;
 				
@@ -377,7 +377,7 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 <div class="retreat-overview__booking-info__list retreat-overview__booking-info__list--book-now"><button type="submit" value="Book Now" name="booknow" id="edit-booknow" class="button btn--colour-seventeen btn--full-width nr_booknow-btn">BOOK NOW</button>
 </div>
 </form>
-<div id="nr_booking_detail"></div>
+<div id="nr_booking_phone"><h3>Or Call 844.862.8253</h3></div>
 <div class="table-responsive"><table class="table table-condensed nr_calendar-key"><tbody><tr><td>Available to Book</td><td><span class="nr_calendar-key-colour nr_calendar-status-A"></span></td></tr><tr><td>Occupied</td><td><span class="nr_calendar-key-colour nr_calendar-status-O"></span></td></tr></tbody></table></div>
 </div></div>
       </div>
