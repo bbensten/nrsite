@@ -121,7 +121,7 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/gettagdata?p_site=1&p_page=
 					  
 					  </select>
 					</form>
-					<div><a href="accomodation.php" class="view-link1">View All ></a></div>
+					<div><a href="accommodation.php" class="view-link1">View All ></a></div>
 			</div>
 			<div style="clear:both"></div>	
 			</section>

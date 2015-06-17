@@ -87,7 +87,7 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getlocations?p_site=1&p_key
  
 	$.each(data.locationdata, function (key, val) {
 					
-			$('#selLoc').append('<option  value="accomodation.php?locid='+val.locationid+'">'+val.locationname+'</option>');
+			$('#selLoc').append('<option  value="accommodation.php?locid='+val.locationid+'">'+val.locationname+'</option>');
 		
 	});
 

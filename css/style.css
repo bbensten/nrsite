@@ -1443,3 +1443,7 @@
 			padding:5px;
 			}
 #main-slider img{width:100%;}
+#slider1_container{margin:0 auto;}
+.mark{
+background-color:#888888!important;
+}

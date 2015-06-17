@@ -17,7 +17,7 @@
 					  
 					  </select>
 					</form>
-					<div class="align-center"><a href="accomodation.php" class="view-link1">View All ></a></div>
+					<div class="align-center"><a href="accommodation.php" class="view-link1">View All ></a></div>
 
 					
 		</section>
