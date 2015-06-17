@@ -208,7 +208,7 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 				break;
 				}
 				
-				items3 += '\'20'+from[2]+'-'+mon+'-'+from[0]+'\' ,';
+				items3 += "'20'"+from[2]+'-'+mon+'-'+from[0]+'\' ,';
 				
 				}
 				
@@ -272,9 +272,12 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 				break;
 				}
           //alert([year, mon, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
-		  $('#arrDate').val([date , mon, '15'].join('-'));
-		  $('#CategoryId').val(val.categoryid);
-		  $('#nr_booking_form').submit();
+		  $('#arrDate').val([date , mon, '15'].join('-'));		  
+		  //$('#nr_booking_detail').html('Arrival Date: '+[date , mon, '15'].join('-'));
+		  $('td', this.$element).filter('.available, .unavailable').removeClass('mark').filter(function(){
+			var data = $(this).data();
+			return data.date == date && data.month == month && data.year == year;
+			}).addClass('mark');
 		  }
 	}); 
 	
@@ -282,11 +285,10 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 
 });
 
+
+
 });
-//$(document).on('click','.available',function(e){
-	//$('#nr_booking_form').submit();
-	
-	//});
+
 </script>
         
         
@@ -366,14 +368,17 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 <input type="hidden" value="" name="RegionId">
 <input type="hidden" value="306" name="ResortId">
 <input type="hidden" value="" name="ArrivalDate" id="arrDate">
-<input type="hidden" value="" name="CategoryId" id="CategoryId">
-</form>
+<input type="hidden" value="<?php echo $_REQUEST['pid'];?>" name="CategoryId" id="CategoryId">
+
 <fieldset id="edit-summary" style="display: none;" class="nr_booknow-summary panel panel-default form-wrapper">
       <div class="panel-body">
         </div>
   </fieldset>
 <div class="retreat-overview__booking-info__list retreat-overview__booking-info__list--book-now"><button type="submit" value="Book Now" name="booknow" id="edit-booknow" class="button btn--colour-seventeen btn--full-width nr_booknow-btn">BOOK NOW</button>
-</div><div class="table-responsive"><table class="table table-condensed nr_calendar-key"><tbody><tr><td>Available to Book</td><td><span class="nr_calendar-key-colour nr_calendar-status-A"></span></td></tr><tr><td>Occupied</td><td><span class="nr_calendar-key-colour nr_calendar-status-O"></span></td></tr></tbody></table></div>
+</div>
+</form>
+<div id="nr_booking_detail"></div>
+<div class="table-responsive"><table class="table table-condensed nr_calendar-key"><tbody><tr><td>Available to Book</td><td><span class="nr_calendar-key-colour nr_calendar-status-A"></span></td></tr><tr><td>Occupied</td><td><span class="nr_calendar-key-colour nr_calendar-status-O"></span></td></tr></tbody></table></div>
 </div></div>
       </div>
       
