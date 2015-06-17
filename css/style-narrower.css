@@ -1,0 +1,110 @@
+/*
+	Helios by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
+
+/*********************************************************************************/
+/* Basic                                                                         */
+/*********************************************************************************/
+
+	body,input,textarea,select
+	{
+		font-size: 12pt;
+		line-height: 1.65em;
+	}
+
+	.tweet
+	{
+		text-align: center;
+	}
+
+	.timestamp
+	{
+		display: block;
+		text-align: center;
+	}
+
+/*********************************************************************************/
+/* Footer                                                                        */
+/*********************************************************************************/
+
+	#footer
+	{
+		padding: 4em 2em 4em 2em;
+	}
+	
+/*********************************************************************************/
+/* Carousel                                                                      */
+/*********************************************************************************/
+
+	.carousel
+	{
+		padding: 1.25em 0 0 0;
+	}
+
+		.carousel article
+		{
+			width: 18em;
+			margin: 0 1em 0 0;
+		}
+		
+		
+		.nr_home_block1{
+
+width:100%;
+padding:10px 3% !important;
+
+}
+.nr_home_block2{
+width:100%;
+padding:2% !important;
+border-left:0 !important;	
+border-top:5px solid #fff;	
+min-height:330px !important;
+}
+.footer-left{
+width:100%;
+text-align:center;
+}	
+.footer-right{
+width:100%;
+}
+.footer-left h3{
+text-align:center;
+}
+.villa-featured {
+    width: 47%!important;
+}
+
+#banner_title1 {
+    margin: 0 auto;
+    text-align: center;
+    width: 70%;
+}
+#nav-footer{
+text-align:center;
+}
+#nav-footer li{
+padding: 0 3%;
+}
+#nr_footer_social ul:last-child{
+margin-right:0 !important;
+}
+.xplore1{
+display:none;
+}
+.xplore2{
+width:100%;
+padding-bottom:20px!important;
+}
+
+.search-dropdown{
+
+padding:10px;
+font-size:12pt;
+
+}
+
+
+		
