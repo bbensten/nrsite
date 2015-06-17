@@ -179,11 +179,11 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 				mon = '05';
 				break;
 				
-				case "JUN":
+				case "JUNE":
 				mon = '06';
 				break;
 				
-				case "JUL":
+				case "JULY":
 				mon = '07';
 				break;
 				
@@ -218,7 +218,64 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 	items3 = items3.slice(0,-2);
 	
       $('#basic').calendar({
-	  	unavailable: [ '2015-06-12' ,'2015-06-13' ,'2015-06-26' ,'2015-06-27' ,'2015-06-28' ,'2015-06-29' ,'2015-06-30' ]
+	  	unavailable: [ '2015-06-12' ,'2015-06-13' ,'2015-06-26' ,'2015-06-27' ,'2015-06-28' ,'2015-06-29' ,'2015-06-30' ],
+		onSelectDate: function(date, month, year){
+		var mon ;
+				
+				switch(month){
+				case "1":
+				mon = 'JAN';
+				break;
+				
+				case "2":
+				mon = 'FEB';
+				break;
+				
+				case "3":
+				mon = 'MAR';
+				break;
+				
+				case "4":
+				mon = 'APR';
+				break;
+				
+				case "5":
+				mon = 'MAY';
+				break;
+				
+				case "6":
+				mon = 'JUNE';
+				break;
+				
+				case "7":
+				mon = 'JULY';
+				break;
+				
+				case "8":
+				mon = 'AUG';
+				break;
+				
+				case "9":
+				mon = 'SEP';
+				break;
+				
+				case "10":
+				mon = 'OCT';
+				break;
+				
+				case "11":
+				mon = 'NOV';
+				break;
+				
+				default :
+				mon = 'DEC';
+				break;
+				}
+          //alert([year, mon, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
+		  $('#arrDate').val([date , mon, '15'].join('-'));
+		  $('#CategoryId').val(val.categoryid);
+		  $('#nr_booking_form').submit();
+		  }
 	}); 
 	
 	
@@ -226,10 +283,10 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 });
 
 });
-$(document).on('click','.available',function(e){
-	$('#nr_booking_form').submit();
+//$(document).on('click','.available',function(e){
+	//$('#nr_booking_form').submit();
 	
-	});
+	//});
 </script>
         
         
@@ -306,8 +363,10 @@ $(document).on('click','.available',function(e){
 <input type="hidden" value="" name="GuestInfants">
 <input type="hidden" value="" name="GuestPets">
 <input type="hidden" value="1" name="Nights">
-<input type="hidden" value="" name="ArrivalDate">
-<input type="hidden" value="" name="CategoryId">
+<input type="hidden" value="" name="RegionId">
+<input type="hidden" value="306" name="ResortId">
+<input type="hidden" value="" name="ArrivalDate" id="arrDate">
+<input type="hidden" value="" name="CategoryId" id="CategoryId">
 </form>
 <fieldset id="edit-summary" style="display: none;" class="nr_booknow-summary panel panel-default form-wrapper">
       <div class="panel-body">
