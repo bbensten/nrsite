@@ -361,14 +361,14 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 
 <form action="https://www.naturalretreats.com/us/booking/agent" method="post" id="nr_booking_form">
 <input type="hidden" value="USSV" name="AgentRef">
-<input type="hidden" value="" name="GuestAdults">
+<input type="hidden" value="2" name="GuestAdults">
 <input type="hidden" value="" name="GuestInfants">
 <input type="hidden" value="" name="GuestPets">
 <input type="hidden" value="" name="Nights">
-<input type="hidden" value="" name="RegionId">
+<input type="hidden" value="3" name="RegionId">
 <input type="hidden" value="306" name="ResortId">
 <input type="hidden" value="" name="ArrivalDate" id="arrDate">
-<input type="hidden" value="" name="CategoryId" id="edit-CategoryId">
+<input type="hidden" value="<?php echo $_REQUEST['pid'];?>" name="CategoryId" id="edit-CategoryId">
 
 <fieldset id="edit-summary" style="display: none;" class="nr_booknow-summary panel panel-default form-wrapper">
       <div class="panel-body">

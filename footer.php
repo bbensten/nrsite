@@ -7,7 +7,7 @@
 					<div class="xplore2">	
 						<h2>Your Xplore Team</h2>
 						<p></p>
-				  <p>The Xplore Team are travel experts, champions of customer service, and gurus of all things Natural Retreats. They've been to every location, know cycling and hiking routes and where to sample local produce. Plus, they're here for you throughout your journey!</p>
+				  <p>The members of the Xplore Team serve as our in house Travel Experts. Champions of customer service and gurus of all things Natural Retreats, they have been to every location and know cycling and hiking routes, where to sample local produce and are full of tips to help you better enjoy your North Lake Tahoe vacation. In addition to helping you plan, the Xplore Team is available throughout your journey.</p>
 				  <div class="call-xplore"><h3>844.862.8253</h3></div>
 					<div class="email-xplore"><a href="mailto:concierge@naturalretreats.com" class="xplore-mail"><h3>concierge@naturalretreats.com</h3></a></div>
 				</div>
@@ -31,7 +31,7 @@
 				
 				<div style="clear:both;"></div>
 				
-				<div><p>Sierra Vacations offers a unique variety of vacation rentals in North Lake Tahoe and Northstar California&trade;. Ranging from deluxe Lakefront and Lakeview cabins to elegant homes and condos, Sierra Vacations will help you choose a perfect rental for you and your family. Let us help you create the adventure of a lifetime in one of our premier North Lake Tahoe vacation rentals! 
+				<div><p>Sierra Vacations by Natural Retreats offers a unique variety of vacation rentals in North Lake Tahoe and Northstar California™. Ranging from deluxe Lakefront and Lakeview cabins to elegant mountaintop homes and condos, Sierra Vacations by Natural Retreats will assist you in choosing a perfect rental for you and your family. Let us help you create the adventure of a lifetime in one of our premier North Lake Tahoe vacation homes!
 				</p></div>
 				
 				</div>
