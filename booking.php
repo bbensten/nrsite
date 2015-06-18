@@ -20,7 +20,7 @@
 			<script src="js/init.js"></script>
 			<script type="text/javascript" src="js/jssor.js"></script>
 			<script type="text/javascript" src="js/jssor.slider.js"></script>
-			<script type="text/javascript" src="booking/scripts/dateTimePicker.min.js"></script>
+			<script type="text/javascript" src="booking/scripts/dateTimePicker.js"></script>
 	
 
 			<script src="js/booking-feed.js"></script>
@@ -146,7 +146,14 @@
 $(document).ready(function()
 {
 var items3='';
-$.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1&p_category='+pid+'&p_key=TASD234DFH&p_searchdate=12-JUN-2015&p_cal=Y', function (data) {
+$.ajax({
+					url: "proxy-php/data-feed.php?pid="+pid+"&pcal=Y&pdate="+<?php echo "'".strtoupper(date("d-M-Y"))."'";?>,
+					cache: false,
+					dataType: "json",
+					complete: function(data2) {
+					
+					var data=data2.responseJSON; 
+
   
 	$.each(data.categorydata, function (key, val) {
 	//console.log(val);
@@ -208,7 +215,7 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 				break;
 				}
 				
-				items3 += "'20"+from[2]+"-"+mon+"-"+from[0]+"' ,";
+				items3 += "20"+from[2]+"-"+mon+"-"+from[0]+" ,";
 				
 				}
 				
@@ -218,7 +225,7 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 	items3 = items3.slice(0,-2);
 	//alert(items3);
       $('#basic').calendar({
-	  	unavailable: [ '2015-06-12' ,'2015-06-13' ,'2015-06-26' ,'2015-06-27' ,'2015-06-28' ,'2015-06-29' ,'2015-06-30' ],
+	  	unavailable: [ items3 ],
 		onSelectDate: function(date, month, year){
 		var mon ;
 				
@@ -283,9 +290,9 @@ $.getJSON('https://nres.naturalretreats.com/rest/ews/getcategories_full?p_site=1
 	
 	
 
+}
+
 });
-
-
 
 });
 

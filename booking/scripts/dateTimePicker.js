@@ -239,15 +239,19 @@
 		 */
 		isAvailable: function(date, month, year){
 			for (var i in this.unavailable){
-				var book_date = this.unavailable[i].split('-');
-				if (book_date.length !== 3){
-					return false;
-				}else if (
-					(book_date[0] == '*' || book_date[0] - year === 0)	&&
-					(book_date[1] == '*' || book_date[1] - month === 0) &&
-					(book_date[2] == '*' || book_date[2] - date === 0)
-				){
-					return false;
+				var book_string = this.unavailable[i].split(',');
+				for(var j=0; j < book_string.length;j++){
+					var book_date = book_string[j].split('-');
+					
+					if (book_date.length !== 3){
+						return false;
+					}else if (
+						(book_date[0] == '*' || book_date[0] - year === 0)	&&
+						(book_date[1] == '*' || book_date[1] - month === 0) &&
+						(book_date[2] == '*' || book_date[2] - date === 0)
+					){
+						return false;
+					}
 				}
 			}
 			return true;
