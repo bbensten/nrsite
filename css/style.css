@@ -1314,7 +1314,7 @@
 			#nr_xplore{
 			margin-top:20px;
 			margin-bottom:0;
-			max-height:292px;
+			max-height:377px;
 			overflow:hidden;
 			}
 			.xplore1{
@@ -1327,11 +1327,11 @@
 			height:100%;
 			background-color:#e3e3e3;
 			color:#7f7f7f;
-			padding: 40px 3% 10px;
+			padding: 22px 3% 10px;
 			text-align:left;
 			}
 			.xplore2 h2{
-			color:#7f7f7f;
+			color:#7f7f7f;font-size:63px;margin:0;
 			}
 			#banner_title1{
 			padding:10px 0 15px 0;
@@ -1346,11 +1346,11 @@
 			text-transform:uppercase;
 			color:#7f7f7f;
 			}
-			.call-xplore
-			{
-			font-size:14pt;
+			.call-xplore h3{
+			font-size:60px;
 			text-transform:uppercase;
 			color:#7f7f7f;
+			margin:0 0 8px 0;
 			}
 			.footer-top{
 			background-color:#707070;
@@ -1442,11 +1442,46 @@
 			border: 1px solid #666666;
 			padding:5px;
 			}
+
+.rstMargin{margin:0}
+.rstPadding{padding:0}
+.text-center{text-align:center;}
+#bookingCalendar.loading{background:url("../images/img/bx-loader.gif") center center no-repeat;}
+
 #main-slider img{width:100%;}
 #slider1_container{margin:0 auto;}
-.mark{
-background-color:#888888!important;
+#nr_booking_phone{text-align:center;}
+.accommodation-location h2{font-size:48px;line-height:150%;margin:0;}
+.retreat-accommodation-info__title{font-size:36px;font-family:"Trajan Pro",serif}
+
+.bookingCallout{font-family: "Trajan Pro",serif;text-align:center;font-size:14px;color:#7f7f7f;padding-top:16px;}
+.bookingCallout a,.bookingCallout a:hover,.bookingCallout a:visited{color:#7f7f7f;text-decoration:underline;}
+.bookingCallout .calloutTitle{font-size:18px;}
+.bookingCallout #nr_booking_phone h3{font-size:33px;margin:0px;}
+
+.viewVillaButton{padding:5px 15px!important;top:50px!important;}
+
+.datetimepicker table td.available{background:#008000!important;}
+.datetimepicker table td.unavailable{background:#c55762!important;}
+.datetimepicker table td.mark{background-color:#888888!important;}
+
+@media screen and (max-width:1280px) {
+  .xplore2 h2{font-size:34px;}
+  .call-xplore h3{font-size:30px;}
 }
-#nr_booking_phone{
-text-align:center;
+
+@media screen and (max-width:980px) {
+  .wrapper,#propertyList{padding-left:0!important;padding-right:0!important;margin:0!important;}
+}
+
+@media screen and (max-width:864px) {
+  
+}
+
+@media screen and (max-width:767px) {
+  .villa{margin-right:2%!important;width:96%!important;}
+}
+
+@media screen and (max-width:480px) {
+  .villa{margin-right:1%!important;margin-left:1%!important;width:98%!important;}
 }

@@ -1,4 +1,6 @@
-	<!DOCTYPE HTML>
+<?php 
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+?>	<!DOCTYPE HTML>
 	<!--
 		Helios by HTML5 UP
 		html5up.net | @n33co
@@ -21,302 +23,201 @@
 			<script type="text/javascript" src="js/jssor.js"></script>
 			<script type="text/javascript" src="js/jssor.slider.js"></script>
 			<script type="text/javascript" src="booking/scripts/dateTimePicker.js"></script>
-	
-
 			<script src="js/booking-feed.js"></script>
 			<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 			<script >
-			
-			
 			var pid = <?php echo $_REQUEST['pid'];?>;
 			$.ajax({
             url: "proxy-php/data-feed.php?pid="+pid,
             cache: false,
             dataType: "json",
             complete: function(data) {
-                           			 
-			 var data2=data.responseJSON;
-			 //console.log(data2);
+			var data2=data.responseJSON;
 			var val=data2.categorydata[0];	
-				
-					
-					//console.log(val2);
-												
-						$('#nr_property_title').html(val.categoryname);
-						$('#nr_property_teaser').html(val.teaser);
+			$('#nr_property_title').html(val.categoryname);
+			$('#nr_property_teaser').html(val.teaser);
+			$('#nr_property_summary').html(val.description);
 						
-						$('#nr_property_summary').html(val.description);
-						
-						var items2='';
-						var imgpath;
-						$.each(val.features, function (key2, val2) {
+			var items2='';
+			var imgpath;
+			$.each(val.features, function (key2, val2) {
 				imgpath  = val2.url;
-				
 				items2 +='<li> <img alt="" src="'+imgpath+'">'+val2.feature_name+'</li>';
-				
 			});
-
-			if(items2 != ''){
-			$('#nr_features_list').html(items2);
+			if(items2 != ''){ 
+				$('#nr_features_list').html(items2);
 			}
             var locname = val.categoryname.split('-');
 			if(locname[0] == ''){
 				locname[0] = val.categoryname;
 			}
 			//$('#map-container').html('<iframe src="http://maps.google.com/maps?q='+val.categoryname+'+ON&loc:'+val.latitude+'+'+val.longitude+'&z=10&output=embed" width="1366" height="500" frameborder="0" style="border:0"></iframe>');
-			
-
-		
-        var mapOptions = {
-            center: new google.maps.LatLng(val.latitude, val.longitude),
-            zoom: 8,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var infoWindow = new google.maps.InfoWindow();
-        var map = new google.maps.Map(document.getElementById("map-container"), mapOptions);
-		var myLatlng = new google.maps.LatLng(val.latitude, val.longitude);
-        var marker = new google.maps.Marker({
+	        var mapOptions = {
+    	        center: new google.maps.LatLng(val.latitude, val.longitude),
+    	        zoom: 8,
+    	        mapTypeId: google.maps.MapTypeId.ROADMAP
+    	    };
+	        var infoWindow = new google.maps.InfoWindow();
+	        var map = new google.maps.Map(document.getElementById("map-container"), mapOptions);
+			var myLatlng = new google.maps.LatLng(val.latitude, val.longitude);
+	        var marker = new google.maps.Marker({
                 position: myLatlng,
                 map: map,
                 title: val.categoryname
             });
-		/* google.maps.event.addListener(marker, "click", function (e) {
-                    infoWindow.setContent(val.teaser);
-                    infoWindow.open(map, marker);
-                }); */
+			/* google.maps.event.addListener(marker, "click", function (e) {
+                   infoWindow.setContent(val.teaser);
+                   infoWindow.open(map, marker);
+            }); */
 
-
-			
 			var items3='';
 			var imgpath;
 			$.each(val.images, function (key3, val3) {
 				imgpath  = val3.url;
-				
 				items3 +='<div> <img alt="" src="'+imgpath+'">   </div>';
-				
 			});
 			if(items3 != ''){
-			$('#main-slider').html(items3);
-			jQuery(document).ready(function initslider($) {
-            var options = {
-                $AutoPlay: true,
+				$('#main-slider').html(items3);
+				jQuery(document).ready(function initslider($) {
+	            var options = {
+	                $AutoPlay: true,
+	                $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slideshow is auto playing, default value is false
+	                $ArrowKeyNavigation: true,   			            //Allows arrow key to navigate or not
+	                $SlideWidth: 600,                                   //[Optional] Width of every slide in pixels, the default is width of 'slides' container
+	                //$SlideHeight: 300,                                  //[Optional] Height of every slide in pixels, the default is width of 'slides' container
+	                $SlideSpacing: 0, 					                //Space between each slide in pixels
+	                $DisplayPieces: 2,                                  //Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+	                $ParkingPosition: 100,                                //The offset position to park slide (this options applys only when slideshow disabled).
+	                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+	                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+	                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+	                    $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+	                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
+	                }
+	            };
+	            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+	
+	            //responsive code begin
+	            //you can remove responsive code if you don't want the slider scales while window resizes
+	            function ScaleSlider() {
+	                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
+	                if (parentWidth)
+	                    jssor_slider1.$ScaleWidth(Math.min(parentWidth, 1366));
+	                else
+	                    window.setTimeout(ScaleSlider, 30);
+	            }
+	            ScaleSlider();
+	
+	            $(window).bind("load", ScaleSlider);
+	            $(window).bind("resize", ScaleSlider);
+	            $(window).bind("orientationchange", ScaleSlider);
+	            //responsive code end
+	        });
+		}
+		}
+		});
+<?php
+$date = $_GET['date']? $_GET['date'] :strtoupper(date("d-M-Y"));
+$dateArr = explode('-', $date); ?>
+$(document).ready(function(){
+	var monthNos	= {JAN:1,FEB:2,MAR:3,APR:4,MAY:5,JUN:6,JUL:7,AUG:8,SEP:9,OCT:10,NOV:11,DEC:12};
+	var monthNames	= {1:'JAN',2:'FEB',3:'MAR',4:'APR',5:'MAY',6:'JUN',7:'JUL',8:'AUG',9:'SEP',10:'OCT',11:'NOV',12:'DEC'};
+	
+	loadTheCalendar(<?php echo "'".$date."'";?>);
+	
+	function loadTheCalendar($date){
+		if(!$date) return false;
 
-                $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slideshow is auto playing, default value is false
+		$dateAr	= $date.split("-");
+		$theM	= monthNos[$dateAr[1]];
+		$theY	= $dateAr[2];
 
-                $ArrowKeyNavigation: true,   			            //Allows arrow key to navigate or not
-                $SlideWidth: 600,                                   //[Optional] Width of every slide in pixels, the default is width of 'slides' container
-                //$SlideHeight: 300,                                  //[Optional] Height of every slide in pixels, the default is width of 'slides' container
-                $SlideSpacing: 0, 					                //Space between each slide in pixels
-                $DisplayPieces: 2,                                  //Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
-                $ParkingPosition: 100,                                //The offset position to park slide (this options applys only when slideshow disabled).
+		var items3='';
+		$('#bookingCalendar').addClass('disabled loading');
+		$('#basic').css('opacity','0.5');
+		$.ajax({
+			url: "proxy-php/data-feed.php?pid="+pid+"&pcal=Y&pdate="+$date,
+			cache: false,
+			dataType: "json",
+			complete: function(data2) {
+				var data=data2.responseJSON; 
+				$.each(data.categorydata, function (key, val) {
+					items3='';
+					var mon;
+					$.each(val.availability, function (key2, val2) {			
+						if(val2.available ==0){
+							var from = val2.caldate.split("-");
+							items3 += "20"+from[2]+"-"+monthNos[from[1]]+"-"+from[0]+" ,";
+						}
+					});
+				});
+			items3 = items3.slice(0,-2);
+			if(items3=='') items3 = '0000-00-00';
+			$('#bookingCalendar').html('<div id="basic" data-toggle="calendar" ></div>');
+		      $('#basic').calendar({
+			  	unavailable: [ items3 ],
+			  	month : $theM,
+			  	year : $theY,
+				onSelectDate: function(date, month, year){
+					if($('#bookingCalendar').hasClass('disabled')) return false;
+		          //alert([year, mon, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
+				  $('#arrDate').val([date , monthNames[month], '15'].join('-'));		  
+				  //$('#nr_booking_detail').html('Arrival Date: '+[date , mon, '15'].join('-'));
+				  $('td', this.$element).filter('.available, .unavailable').removeClass('mark').filter(function(){
+					var data = $(this).data();
+					return data.date == date && data.month == month && data.year == year;
+					}).addClass('mark');
+				  }
+				}); 
 
-                $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
-                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
-                    $AutoCenter: 2,                                 //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-                    $Steps: 1                                       //[Optional] Steps to go for each navigation request, default value is 1
-                }
-            };
+		      	$nextM	= parseInt($theM)+1;
+			  	$nextY	= $theY;
+			  	if($nextM > 12) {
+				  	$nextM = 1;
+				  	$nextY	= parseInt($theY)+1;
+			  	}
 
-            var jssor_slider1 = new $JssorSlider$("slider1_container", options);
+			  	$prevM	= parseInt($theM)-1;
+			  	$prevY	= $theY;
+			  	if($prevM < 1){
+				  	$prevM = 12;
+				  	$prevY	= parseInt($theY)-1;
+			  	}
 
-            //responsive code begin
-            //you can remove responsive code if you don't want the slider scales while window resizes
-            function ScaleSlider() {
-                var parentWidth = jssor_slider1.$Elmt.parentNode.clientWidth;
-                if (parentWidth)
-                    jssor_slider1.$ScaleWidth(Math.min(parentWidth, 1366));
-                else
-                    window.setTimeout(ScaleSlider, 30);
-            }
-            ScaleSlider();
-
-            $(window).bind("load", ScaleSlider);
-            $(window).bind("resize", ScaleSlider);
-            $(window).bind("orientationchange", ScaleSlider);
-            //responsive code end
-        });
+		    	$('.datetimepicker .next').click(function(){
+			    	if($('#bookingCalendar').hasClass('disabled')) return false;
+		        	loadTheCalendar('1-'+monthNames[$nextM]+'-'+$nextY);
+		        	return false;
+		        });
+		
+		    	$('.datetimepicker .prev').click(function(){
+		    		if($('#bookingCalendar').hasClass('disabled')) return false;
+		        	loadTheCalendar('1-'+monthNames[$prevM]+'-'+$prevY);
+		        	return false;
+		        });
+		    	$('#bookingCalendar').removeClass('disabled loading');
 			}
-			
-			}
-			});
-			
-		
-    
-$(document).ready(function()
-{
-var items3='';
-$.ajax({
-					url: "proxy-php/data-feed.php?pid="+pid+"&pcal=Y&pdate="+<?php echo "'".strtoupper(date("d-M-Y"))."'";?>,
-					cache: false,
-					dataType: "json",
-					complete: function(data2) {
-					
-					var data=data2.responseJSON; 
+		});
+	}
 
-  
-	$.each(data.categorydata, function (key, val) {
-	//console.log(val);
-		
-		//console.log(val2);
-			items3='';
-			var mon;
-			$.each(val.availability, function (key2, val2) {			
-				if(val2.available ==0){
-				var from = val2.caldate.split("-");
-				
-				switch(from[1]){
-				case "JAN":
-				mon = '01';
-				break;
-				
-				case "FEB":
-				mon = '02';
-				break;
-				
-				case "MAR":
-				mon = '03';
-				break;
-				
-				case "APR":
-				mon = '04';
-				break;
-				
-				case "MAY":
-				mon = '05';
-				break;
-				
-				case "JUN":
-				mon = '06';
-				break;
-				
-				case "JUL":
-				mon = '07';
-				break;
-				
-				case "AUG":
-				mon = '08';
-				break;
-				
-				case "SEP":
-				mon = '09';
-				break;
-				
-				case "OCT":
-				mon = '10';
-				break;
-				
-				case "NOV":
-				mon = '11';
-				break;
-				
-				default :
-				mon = '12';
-				break;
-				}
-				
-				items3 += "20"+from[2]+"-"+mon+"-"+from[0]+" ,";
-				
-				}
-				
-			});
-		
+	$('#edit-booknow').click(function(){
+		if($('#bookingCalendar').hasClass('disabled')) return false;
 	});
-	items3 = items3.slice(0,-2);
-	//alert(items3);
-      $('#basic').calendar({
-	  	unavailable: [ items3 ],
-		onSelectDate: function(date, month, year){
-		var mon ;
-				
-				switch(month){
-				case 1:
-				mon = 'JAN';
-				break;
-				
-				case 2:
-				mon = 'FEB';
-				break;
-				
-				case 3:
-				mon = 'MAR';
-				break;
-				
-				case 4:
-				mon = 'APR';
-				break;
-				
-				case 5:
-				mon = 'MAY';
-				break;
-				
-				case 6:
-				mon = 'JUNE';
-				break;
-				
-				case 7:
-				mon = 'JUL';
-				break;
-				
-				case 8:
-				mon = 'AUG';
-				break;
-				
-				case 9:
-				mon = 'SEP';
-				break;
-				
-				case 10:
-				mon = 'OCT';
-				break;
-				
-				case 11:
-				mon = 'NOV';
-				break;
-				
-				default :
-				mon = 'DEC';
-				break;
-				}
-          //alert([year, mon, date].join('-') + ' is: ' + this.isAvailable(date, month, year));
-		  $('#arrDate').val([date , mon, '15'].join('-'));		  
-		  //$('#nr_booking_detail').html('Arrival Date: '+[date , mon, '15'].join('-'));
-		  $('td', this.$element).filter('.available, .unavailable').removeClass('mark').filter(function(){
-			var data = $(this).data();
-			return data.date == date && data.month == month && data.year == year;
-			}).addClass('mark');
-		  }
-	}); 
-	
-	
-
-}
-
 });
-
-});
-
 </script>
-        
-        
-       
-			<noscript>
-				<link rel="stylesheet" href="css/skel.css" />
-				<link rel="stylesheet" href="css/style.css" />
-				<link rel="stylesheet" href="css/style-desktop.css" />
-				<link rel="stylesheet" href="css/style-noscript.css" />
-			</noscript>
-			
-			<link rel="stylesheet" href="booking/assets/dateTimePicker.css">
-				<link rel="stylesheet" href="css/kmp.css" />
-				<link rel="stylesheet" href="css/bootstrap.css" />
-				<link rel="stylesheet" href="css/override.css" />
+	<noscript>
+		<link rel="stylesheet" href="css/skel.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/style-desktop.css" />
+		<link rel="stylesheet" href="css/style-noscript.css" />
+	</noscript>
 				
-				
-							
-				
-			<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
-		</head>
+	<link rel="stylesheet" href="booking/assets/dateTimePicker.css">
+	<link rel="stylesheet" href="css/kmp.css" />
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/override.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+</head>
 		<body class="left-sidebar">
 
 			<!-- Header -->
@@ -364,7 +265,9 @@ $.ajax({
         
                         <div id="nr_booking_form_booknow_wrapper"><div>
 						<div style="text-align:center;"><h3>Availability</h3></div>
-</div><div id="basic" data-toggle="calendar" ></div>
+</div>
+<div id="bookingCalendar"></div>
+
 
 <form action="https://www.naturalretreats.com/us/booking/agent" method="post" id="nr_booking_form">
 <input type="hidden" value="USSV" name="AgentRef">
@@ -381,10 +284,16 @@ $.ajax({
       <div class="panel-body">
         </div>
   </fieldset>
-<div class="retreat-overview__booking-info__list retreat-overview__booking-info__list--book-now"><button type="submit" value="Book Now" name="booknow" id="edit-booknow" class="button btn--colour-seventeen btn--full-width nr_booknow-btn">BOOK NOW</button>
+<div class="retreat-overview__booking-info__list retreat-overview__booking-info__list--book-now">
+	<button type="submit" value="Book Now" name="booknow" id="edit-booknow" class="button btn--colour-seventeen btn--full-width nr_booknow-btn">CHECK RATES &amp; BOOK NOW</button>
 </div>
 </form>
-<div id="nr_booking_phone"><h3>Or Call 844.862.8253</h3></div>
+
+<div class="bookingCallout">
+	<span class="calloutTitle">Questions? Call the Xplore Team</span>
+	<div id="nr_booking_phone"><h3>844.862.8253</h3></div>
+	<span>Or <a href="mailto:concierge@naturalretreats.com">email</a> us to discuss your personal <br />travel requirements</span>
+</div>
 <div class="table-responsive"><table class="table table-condensed nr_calendar-key"><tbody><tr><td>Available to Book</td><td><span class="nr_calendar-key-colour nr_calendar-status-A"></span></td></tr><tr><td>Occupied</td><td><span class="nr_calendar-key-colour nr_calendar-status-O"></span></td></tr></tbody></table></div>
 </div></div>
       </div>
@@ -401,7 +310,7 @@ $.ajax({
 			<!--Main1 Close-->	
 
 			<!--Main2 Strat-->
-<div class="wrapper style1" >
+<div class="wrapper style1 rstMargin rstPadding" >
  
 <section id="features" class="container special">
 					<header>
@@ -465,14 +374,14 @@ $.ajax({
 			<!--Main2 Stop-->
 
 			
-			<div class="wrapper style1" >
+			<div class="wrapper style1 rstPadding" >
     <section style="clear:both;padding:0 0 0 0;">
 
       
   <div class="container1">
   <section class="accommodation-location widget-outermost">
     <div style="text-align:center;"><h2>The Location</h2></div>
-    <div class="section-subtitle"></div>
+    <div class="section-subtitle" style="display:none;"></div>
     <div class="map accommodation-location-map" style="position: relative; background-color: rgb(229, 227, 223); overflow: hidden;"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;" class="gm-style" id="map-container"></div></div>
   </section>
 </div>

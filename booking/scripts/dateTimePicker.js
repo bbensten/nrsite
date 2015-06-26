@@ -171,7 +171,7 @@
 						$('<span>').addClass('prev').append(_this.options.paging[0]).click(function(){
 							_this.prevMonth();
 						}),
-						$('<div>').addClass('month-name').append([_this.options.month_name[date.getMonth()], ', ', date.getFullYear()]),
+						$('<div>').addClass('month-name').append([_this.options.month_name[date.getMonth()], ' ', date.getFullYear()]),
 						$('<span>').addClass('next').append(_this.options.paging[1]).click(function(){
 							_this.nextMonth();
 						}),

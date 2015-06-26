@@ -43,6 +43,27 @@ $(document).ready(function()
 				noOpenerFade: true,
 				alignment: 'center'
 			});
+			checkMobileNav()
+			function checkMobileNav(){
+				$ww = $(window).width();
+				if($ww < 768){
+					$('#nav li a').addClass('link depth-0');
+					$('#nav li li a').addClass('link depth-1');
+					$('#nav li li a').removeClass('depth-0');
+					if($('div[data-args="nav"]').html() == ''){
+						$mobileNavHTML	= '<nav>';
+						$('#nav li').each(function(){
+							$mobileNavHTML	+= $(this).html();
+						});
+						$mobileNavHTML	+= '</nav>';
+						$('div[data-args="nav"]').html($mobileNavHTML);
+						$('div[data-args="nav"] a.depth-1').prepend('<span class="indent-1"></span>');
+					}
+				}
+			}
+			$(window).resize(function(){
+				checkMobileNav();
+			});
 			
 			}
 	});
