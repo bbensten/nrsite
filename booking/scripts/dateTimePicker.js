@@ -104,7 +104,8 @@
 		 * @return {[type]} [description]
 		 */
 		getMonths: function(){
-			var date = new Date(), result = [];
+			var ndate = new Date(), result = [];
+			var date = new Date(ndate.getFullYear(),ndate.getMonth(),1);
 			for (var i = this.options.month - this.options.num_prev_month; i <= this.options.month + this.options.num_next_month; i++){
 				date.setFullYear(this.options.year);
 				date.setMonth(i);
@@ -141,21 +142,29 @@
 		 * @return {[type]}       dom element
 		 */
 		getCalendar: function(month, year){
-			var _this = this, date = new Date();
+			var _this = this, ndate = new Date();
+						
+				var date = new Date(ndate.getFullYear(),ndate.getMonth(),1);
+			
 			date.setFullYear(year);
 			date.setMonth(month);
 			date.setDate(1);
-
+			
 			var day_first = date.getDay();
-
+			
 			// total date
 			date.setMonth(date.getMonth() + 1);
 			date.setDate(0);
 			var total_date = date.getDate();
-
+			
+			if(total_date == 31){
+				total_date = 1;
+				date.setDate(1);
+			}
+			
 			// begin date
 			var date_start = this.day_index.indexOf(day_first);
-
+			
 			// total week need to show
 			var total_week;
 			if (!isNaN(this.options.num_of_week)){
@@ -190,7 +199,8 @@
 								ap.push($('<tr>').append(function(){
 									var ap = [];
 									for (var j = 0; j < 7; j++){
-										var d = new Date();
+										var ddate = new Date();
+										var d = new Date(ddate.getFullYear(),ddate.getMonth(),1);
 										d.setFullYear(year);
 										d.setMonth(month);
 										//console.log(month, year);
